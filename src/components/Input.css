@@ -2,7 +2,7 @@
   display: flex;
   height: 4em;
   flex: 1;
-  background-color: red;
+  background-color: black;
   outline: 1px solid green;
   color: white;
   justify-content: flex-end;
