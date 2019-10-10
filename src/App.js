@@ -9,7 +9,7 @@ class App extends React.Component {
     this.state = {
       input: "",
       prevNumber: "",
-      carentNumber: "",
+      currentNumber: "",
       operator: ""
     };
   }
@@ -18,6 +18,54 @@ class App extends React.Component {
       input: this.state.input + val
     });
   };
+  addZeroToInput = val => {
+    if (this.state.input !== "") {
+      this.setState({
+        input: this.state.input + val
+      });
+    }
+  };
+  addDecimal = val => {
+    if (this.state.input.indexOf(".") === -1) {
+      this.setState({
+        input: this.state.input + val
+      });
+    }
+  };
+  clearInput = () => {
+    this.setState({
+      input: ""
+    });
+  };
+  handleAdding = val => {
+    this.state.prevNumber = this.state.input;
+    this.setState({
+      input: ""
+    });
+    this.state.operator = "plus";
+  };
+  evaluate = () => {
+    this.state.currentNumber = this.state.input;
+    if (this.state.operator == "plus") {
+      this.setState({
+        input:
+          parseInt(this.state.prevNumber) + parseInt(this.state.currentNumber)
+      });
+    } else if (this.state.operator === "substract") {
+      this.setState({
+        input:
+          parseInt(this.state.prevNumber) - parseInt(this.state.currentNumber)
+      });
+    }
+  };
+  substract = val => {
+    this.state.prevNumber = this.state.input;
+    this.setState({
+      input: ""
+    });
+    this.state.operator = "substract";
+  };
+
   render() {
     return (
       <div className="app">
@@ -41,16 +89,16 @@ class App extends React.Component {
             <Button handleClick={this.addToInput}>1</Button>
             <Button handleClick={this.addToInput}>2</Button>
             <Button handleClick={this.addToInput}>3</Button>
-            <Button>+</Button>
+            <Button handleClick={this.handleAdding}>+</Button>
           </div>
           <div className="row">
-            <Button>.</Button>
-            <Button>0</Button>
-            <Button>=</Button>
-            <Button>-</Button>
+            <Button handleClick={this.addDecimal}>.</Button>
+            <Button handleClick={this.addZeroToInput}>0</Button>
+            <Button handleClick={this.evaluate}>=</Button>
+            <Button handleClick={this.substract}>-</Button>
           </div>
           <div className="row">
-            <ClearButton>Clear</ClearButton>
+            <ClearButton handleClick={this.clearInput}>Clear</ClearButton>
           </div>
         </div>
       </div>
