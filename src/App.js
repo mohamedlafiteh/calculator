@@ -56,6 +56,16 @@ class App extends React.Component {
         input:
           parseInt(this.state.prevNumber) - parseInt(this.state.currentNumber)
       });
+    } else if (this.state.operator === "divide") {
+      this.setState({
+        input:
+          parseInt(this.state.prevNumber) / parseInt(this.state.currentNumber)
+      });
+    } else if (this.state.operator === "maltiply") {
+      this.setState({
+        input:
+          parseInt(this.state.prevNumber) * parseInt(this.state.currentNumber)
+      });
     }
   };
   substract = val => {
@@ -66,6 +76,20 @@ class App extends React.Component {
     this.state.operator = "substract";
   };
 
+  divide = val => {
+    this.state.prevNumber = this.state.input;
+    this.setState({
+      input: ""
+    });
+    this.state.operator = "divide";
+  };
+  maltiply = val => {
+    this.state.prevNumber = this.state.input;
+    this.setState({
+      input: ""
+    });
+    this.state.operator = "maltiply";
+  };
   render() {
     return (
       <div className="app">
@@ -77,13 +101,13 @@ class App extends React.Component {
             <Button handleClick={this.addToInput}>7</Button>
             <Button handleClick={this.addToInput}>8</Button>
             <Button handleClick={this.addToInput}>9</Button>
-            <Button>/</Button>
+            <Button handleClick={this.divide}>/</Button>
           </div>
           <div className="row">
             <Button handleClick={this.addToInput}>4</Button>
             <Button handleClick={this.addToInput}>5</Button>
             <Button handleClick={this.addToInput}>6</Button>
-            <Button>*</Button>
+            <Button handleClick={this.maltiply}>*</Button>
           </div>
           <div className="row">
             <Button handleClick={this.addToInput}>1</Button>
