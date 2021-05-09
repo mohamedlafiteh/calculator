@@ -38,18 +38,22 @@ class App extends React.Component {
     });
   };
   handleAdding = val => {
-    this.state.prevNumber = this.state.input;
+    //this.state.prevNumber = this.state.input;
     this.setState({
-      input: ""
+      input: "",
+      prevNumber:this.state.input,
+      operator:"plus"
     });
-    this.state.operator = "plus";
+    // this.state.operator = "plus";
   };
   evaluate = () => {
-    this.state.currentNumber = this.state.input;
-    if (this.state.operator == "plus") {
+  //  this.state.currentNumber = this.state.input;
+    if (this.state.operator === "plus") {
       this.setState({
         input:
-          parseInt(this.state.prevNumber) + parseInt(this.state.currentNumber)
+          parseInt(this.state.prevNumber) + parseInt(this.state.currentNumber),
+             currentNumber :this.state.input
+
       });
     } else if (this.state.operator === "substract") {
       this.setState({
@@ -69,26 +73,31 @@ class App extends React.Component {
     }
   };
   substract = val => {
-    this.state.prevNumber = this.state.input;
+    
     this.setState({
-      input: ""
+      input: "",
+     prevNumber :this.state.input,
+   operator : "substract"
     });
-    this.state.operator = "substract";
+    
   };
 
   divide = val => {
-    this.state.prevNumber = this.state.input;
     this.setState({
-      input: ""
+      input: "",
+          prevNumber :this.state.input,
+             operator : "divide"
+
     });
-    this.state.operator = "divide";
   };
   maltiply = val => {
-    this.state.prevNumber = this.state.input;
     this.setState({
-      input: ""
+      input: "",
+         prevNumber : this.state.input,
+      operator : "maltiply"
+
     });
-    this.state.operator = "maltiply";
+    
   };
   render() {
     return (
